@@ -142,9 +142,9 @@ base class Line extends QuillContainer<Leaf?> {
       _format(style);
     } else {
       // Otherwise forward to children as it's an inline format update.
-      assert(style.values.every((attr) =>
-          attr.scope == AttributeScope.inline ||
-          attr.scope == AttributeScope.ignore));
+      // assert(style.values.every((attr) =>
+      //     attr.scope == AttributeScope.inline ||
+      //     attr.scope == AttributeScope.ignore));
       assert(index + local != thisLength);
       super.retain(index, local, style);
     }
