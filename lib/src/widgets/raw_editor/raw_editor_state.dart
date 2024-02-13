@@ -31,6 +31,7 @@ import '../../models/documents/nodes/line.dart';
 import '../../models/documents/nodes/node.dart';
 import '../../models/structs/offset_value.dart';
 import '../../models/structs/vertical_spacing.dart';
+import '../../utils/analytics_service.dart';
 import '../../utils/cast.dart';
 import '../../utils/delta.dart';
 import '../../utils/embeds.dart';
@@ -129,6 +130,7 @@ class QuillRawEditorState extends EditorState
     if (selection.isCollapsed) {
       return;
     }
+    AnalyticsService.get().trackEvent(CopyPasteEvents.copy(cause));
     Clipboard.setData(ClipboardData(text: selection.textInside(text)));
 
     if (cause == SelectionChangedCause.toolbar) {
@@ -177,7 +179,7 @@ class QuillRawEditorState extends EditorState
     if (widget.configurations.readOnly) {
       return;
     }
-
+    AnalyticsService.get().trackEvent(CopyPasteEvents.paste(cause));
     // When image copied internally in the editor
     final copiedImageUrl = controller.copiedImageUrl;
     if (copiedImageUrl != null) {
