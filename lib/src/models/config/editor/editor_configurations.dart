@@ -61,6 +61,7 @@ class QuillEditorConfigurations extends Equatable {
     this.floatingCursorDisabled = false,
     this.textSelectionControls,
     this.onImagePaste,
+    this.onGifPaste,
     this.customShortcuts,
     this.customActions,
     this.detectWordBoundary = true,
@@ -76,6 +77,9 @@ class QuillEditorConfigurations extends Equatable {
     this.builder,
     this.magnifierConfiguration,
     this.textInputAction = TextInputAction.newline,
+    this.enableScribble = false,
+    this.onScribbleActivated,
+    this.scribbleAreaInsets,
   });
 
   final QuillSharedConfigurations sharedConfigurations;
@@ -279,6 +283,11 @@ class QuillEditorConfigurations extends Equatable {
   /// Returns the url of the image if the image should be inserted.
   final Future<String?> Function(Uint8List imageBytes)? onImagePaste;
 
+  /// Callback when the user pastes the given gif.
+  ///
+  /// Returns the url of the gif if the gif should be inserted.
+  final Future<String?> Function(Uint8List imageBytes)? onGifPaste;
+
   /// Contains user-defined shortcuts map.
   ///
   /// [https://docs.flutter.dev/development/ui/advanced/actions-and-shortcuts#shortcuts]
@@ -336,6 +345,15 @@ class QuillEditorConfigurations extends Equatable {
   /// Default to [TextInputAction.newline]
   final TextInputAction textInputAction;
 
+  /// Enable Scribble? Currently Apple Pencil only, defaults to false.
+  final bool enableScribble;
+
+  /// Called when Scribble is activated.
+  final void Function()? onScribbleActivated;
+
+  /// Optional insets for the scribble area.
+  final EdgeInsets? scribbleAreaInsets;
+
   @override
   List<Object?> get props => [
         placeholder,
@@ -379,6 +397,7 @@ class QuillEditorConfigurations extends Equatable {
     bool? floatingCursorDisabled,
     TextSelectionControls? textSelectionControls,
     Future<String?> Function(Uint8List imageBytes)? onImagePaste,
+    Future<String?> Function(Uint8List imageBytes)? onGifPaste,
     Map<ShortcutActivator, Intent>? customShortcuts,
     Map<Type, Action<Intent>>? customActions,
     bool? detectWordBoundary,
@@ -393,6 +412,9 @@ class QuillEditorConfigurations extends Equatable {
     QuillEditorBuilder? builder,
     TextMagnifierConfiguration? magnifierConfiguration,
     TextInputAction? textInputAction,
+    bool? enableScribble,
+    void Function()? onScribbleActivated,
+    EdgeInsets? scribbleAreaInsets,
   }) {
     return QuillEditorConfigurations(
       sharedConfigurations: sharedConfigurations ?? this.sharedConfigurations,
@@ -434,6 +456,7 @@ class QuillEditorConfigurations extends Equatable {
       textSelectionControls:
           textSelectionControls ?? this.textSelectionControls,
       onImagePaste: onImagePaste ?? this.onImagePaste,
+      onGifPaste: onGifPaste ?? this.onGifPaste,
       customShortcuts: customShortcuts ?? this.customShortcuts,
       customActions: customActions ?? this.customActions,
       detectWordBoundary: detectWordBoundary ?? this.detectWordBoundary,
@@ -453,6 +476,9 @@ class QuillEditorConfigurations extends Equatable {
       magnifierConfiguration:
           magnifierConfiguration ?? this.magnifierConfiguration,
       textInputAction: textInputAction ?? this.textInputAction,
+      enableScribble: enableScribble ?? this.enableScribble,
+      onScribbleActivated: onScribbleActivated ?? this.onScribbleActivated,
+      scribbleAreaInsets: scribbleAreaInsets ?? this.scribbleAreaInsets,
     );
   }
 }

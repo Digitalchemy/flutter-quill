@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file.
 
+## 9.3.7
+* Fix for keyboard jumping when switching focus from a TextField
+* Toolbar button styling to reflect cursor position when running on desktops with keyboard to move care
+
+## 9.3.6
+* Add SK and update CS locales [#1796](https://github.com/singerdmx/flutter-quill/pull/1796)
+* Fixes:
+  * QuillIconTheme changes for FontFamily and FontSize buttons are not applied [#1797](https://github.com/singerdmx/flutter-quill/pull/1796)
+  * Make the arrow_drop_down icons in the QuillToolbar the same size for all MenuAnchor buttons [#1799](https://github.com/singerdmx/flutter-quill/pull/1796)
+
+## 9.3.5
+* Update the minimum version for the packages to support `device_info_plus` version 10.0.0 [#1783](https://github.com/singerdmx/flutter-quill/issues/1783)
+* Update the minimum version for `youtube_player_flutter` to new major version 9.0.0 in the `flutter_quill_extensions`
+
+## 9.3.4
+* fix: multiline styling stuck/not working properly [#1782](https://github.com/singerdmx/flutter-quill/pull/1782)
+
+## 9.3.3
+* Update `quill_html_converter` versions
+
+## 9.3.2
+* Fix dispose of text painter [#1774](https://github.com/singerdmx/flutter-quill/pull/1774)
+
+## 9.3.1
+* Require Flutter 3.19.0 as minimum version
+
+## 9.3.0
+* **Breaking change**: `Document.fromHtml(html)` is now returns `Document` instead of `Delta`, use `DeltaX.fromHtml` to return `Delta`
+* Update old deprecated api from Flutter 3.19
+* Scribble scroll fix by @mtallenca in https://github.com/singerdmx/flutter-quill/pull/1745
+
+## 9.2.14
+* feat: move cursor after inserting video/image
+* Apple pencil
+
+## 9.2.13
+* Fix crash with inserting text from contextMenuButtonItems
+* Fix incorrect behaviour of context menu 
+* fix: selection handles behaviour and unnessesary style assert
+* Update quill_fr.arb
+
 ## 9.2.12
 * Fix safari clipboard bug
 * Add the option to disable clipboard functionality

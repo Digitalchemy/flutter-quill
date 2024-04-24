@@ -73,11 +73,15 @@ class QuillRawEditorConfigurations extends Equatable {
     this.customRecognizerBuilder,
     this.floatingCursorDisabled = false,
     this.onImagePaste,
+    this.onGifPaste,
     this.customLinkPrefixes = const <String>[],
     this.dialogTheme,
     this.contentInsertionConfiguration,
     this.textInputAction = TextInputAction.newline,
     this.requestKeyboardFocusOnCheckListChanged = false,
+    this.enableScribble = false,
+    this.onScribbleActivated,
+    this.scribbleAreaInsets,
   });
 
   /// Controls the document being edited.
@@ -258,6 +262,8 @@ class QuillRawEditorConfigurations extends Equatable {
 
   final Future<String?> Function(Uint8List imageBytes)? onImagePaste;
 
+  final Future<String?> Function(Uint8List imageBytes)? onGifPaste;
+
   /// Contains user-defined shortcuts map.
   ///
   /// [https://docs.flutter.dev/development/ui/advanced/actions-and-shortcuts#shortcuts]
@@ -302,6 +308,15 @@ class QuillRawEditorConfigurations extends Equatable {
   final bool requestKeyboardFocusOnCheckListChanged;
 
   final TextInputAction textInputAction;
+
+  /// Enable Scribble? Currently Apple Pencil only, defaults to false.
+  final bool enableScribble;
+
+  /// Called when Scribble is activated.
+  final void Function()? onScribbleActivated;
+
+  /// Optional insets for the scribble area.
+  final EdgeInsets? scribbleAreaInsets;
 
   @override
   List<Object?> get props => [
